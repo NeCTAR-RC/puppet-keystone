@@ -521,13 +521,15 @@ class keystone(
     name   => $::keystone::params::package_name,
     tag    => 'openstack',
   }
-  if $client_package_ensure == 'present' {
-    include '::openstacklib::openstackclient'
-  } else {
-    class { '::openstacklib::openstackclient':
-      package_ensure => $client_package_ensure,
-    }
-  }
+
+  # Disabled to prevent us requiring openstacklib module
+  #if $client_package_ensure == 'present' {
+  #  include '::openstacklib::openstackclient'
+  #} else {
+  #  class { '::openstacklib::openstackclient':
+  #    package_ensure => $client_package_ensure,
+  #  }
+  #}
 
   group { 'keystone':
     ensure  => present,
