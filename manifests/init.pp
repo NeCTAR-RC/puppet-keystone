@@ -546,7 +546,7 @@ class keystone(
 
   file { ['/etc/keystone', '/var/log/keystone', '/var/lib/keystone']:
     ensure  => directory,
-    mode    => '0750',
+    mode    => '0755',
     owner   => 'keystone',
     group   => 'keystone',
     require => Package['keystone'],
