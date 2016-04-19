@@ -688,14 +688,6 @@ class keystone(
     'DEFAULT/public_endpoint': value => $public_endpoint;
     'DEFAULT/admin_endpoint': value => $admin_endpoint;
   }
-  # requirements for memcache token driver
-  if ($token_driver =~ /memcache/ ) {
-    package { 'python-memcache':
-      ensure => present,
-      name   => $::keystone::params::python_memcache_package_name,
-      tag    => ['openstack', 'keystone-package'],
-    }
-  }
 
   keystone_config {
     'token/driver':     value => $token_driver;
