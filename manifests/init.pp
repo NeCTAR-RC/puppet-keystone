@@ -756,12 +756,19 @@ class keystone(
     'token/caching':                      value => $token_caching;
   }
 
+  $openstack_version = hiera('openstack_version')
+
   # configure based on the catalog backend
   if $catalog_driver {
     $catalog_driver_real = $catalog_driver
   }
   elsif ($catalog_type == 'template') {
-    $catalog_driver_real = 'templated'
+    if $openstack_version == 'mitaka' {
+      $catalog_driver_real = 'templated'
+    }
+    else {
+      $catalog_driver_real = 'keystone.catalog.backends.templated.Catalog'
+    }
   }
   elsif ($catalog_type == 'sql') {
     $catalog_driver_real = 'sql'
