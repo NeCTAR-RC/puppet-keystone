@@ -20,7 +20,7 @@ class keystone::params {
           $service_provider            = undef
         }
         default: {
-          $service_provider            = 'upstart'
+          $service_provider            = undef
         }
       }
     }
