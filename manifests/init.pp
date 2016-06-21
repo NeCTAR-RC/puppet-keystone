@@ -676,10 +676,6 @@ class keystone(
 
   keystone_config {
     'DEFAULT/admin_token':      value => $admin_token, secret => true;
-    'DEFAULT/public_bind_host': value => $public_bind_host;
-    'DEFAULT/admin_bind_host':  value => $admin_bind_host;
-    'DEFAULT/public_port':      value => $public_port;
-    'DEFAULT/admin_port':       value => $admin_port;
     'paste_deploy/config_file': value => $paste_config;
   }
 
@@ -854,8 +850,12 @@ class keystone(
   }
 
   keystone_config {
-    'eventlet_server/admin_workers':  value => $admin_workers;
-    'eventlet_server/public_workers': value => $public_workers;
+    'eventlet_server/admin_workers':    value => $admin_workers;
+    'eventlet_server/public_workers':   value => $public_workers;
+    'eventlet_server/public_bind_host': value => $public_bind_host;
+    'eventlet_server/admin_bind_host':  value => $admin_bind_host;
+    'eventlet_server/public_port':      value => $public_port;
+    'eventlet_server/admin_port':       value => $admin_port;
   }
 
   if $manage_policyrcd {
