@@ -833,15 +833,6 @@ admin_token will be removed in a later release")
     'DEFAULT/admin_endpoint': value => $admin_endpoint;
   }
 
-  # requirements for memcache token driver
-  if ($token_driver =~ /memcache/ ) {
-    ensure_packages('python-memcache', {
-      ensure => present,
-      name   => $::keystone::params::python_memcache_package_name,
-      tag    => ['openstack'],
-    })
-  }
-
   keystone_config {
     'token/driver':     value => $token_driver;
     'token/expiration': value => $token_expiration;
